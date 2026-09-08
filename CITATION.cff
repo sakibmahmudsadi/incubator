@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "SIIMS: Smart Infant Incubator Monitoring System"
+type: software
+message: "If you use this software, please cite it using the metadata from this file."
+authors:
+  - name: "S M Sakib Al Mahmud Sadi"
+  - name: "MD. SAMIN RAIYAN KABBO"
+repository-code: "https://github.com/sakibmahmudsadi/incubator"
+license: MIT
+version: "1.0.0"
