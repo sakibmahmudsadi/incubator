@@ -25,7 +25,7 @@ The system uses a three-tier architecture: ESP32-CAM firmware for sensor acquisi
 - Real-time JSON sensor data via HTTP (port 82) and WebSocket push to clients
 - MJPEG video proxy allowing multiple simultaneous viewers without overloading the ESP32
 - Automated hardware fail-safe: BJT transistor circuit triggers red LED and active buzzer when body temperature falls outside the safe range (30.0-35.0 degrees C)
-- Status LED (GPIO 3) indicates normal operation; warning LED (GPIO 2) indicates out-of-range conditions
+- Normal status LED (GPIO 3) indicates body temperature within the configured 30–35°C range; warning LED and buzzer (GPIO 2) activate when body temperature is outside this range
 - React dashboard with dark/light theme, live vital cards, trend charts, and connection status
 - Demo login for dashboard access
 
@@ -60,8 +60,8 @@ See [`assets/ArchitectureDiagram.md`](assets/ArchitectureDiagram.md) for the det
 | Air Temperature + Humidity | DHT22 | Environmental monitoring |
 | Body Temperature | DS18B20 (OneWire) | Neonatal skin temperature probe |
 | Heart Rate + SpO2 | MAX30100 (I2C) | Pulse oximetry |
-| Normal Status LED | LED on GPIO 3 | Indicates safe temperature range |
-| Warning LED | Red LED on GPIO 2 | Indicates out-of-range temperature |
+| Normal Status LED | LED on GPIO 3 | ON when body temperature is within 30–35°C |
+| Warning LED | Red LED on GPIO 2 | Activates with buzzer when body temperature is outside 30–35°C |
 | Transistor | 2N3904 (NPN) | Switches high-current buzzer circuit |
 | Active Buzzer | Buzzer via transistor | Audio alarm for critical conditions |
 
@@ -72,7 +72,7 @@ See [`assets/ArchitectureDiagram.md`](assets/ArchitectureDiagram.md) for the det
 | GPIO | Function | Direction | Notes |
 |---|---|---|---|
 | 2 | Warning LED / BJT Base | Output | Triggers red LED + buzzer when body temp outside 30-35 degrees C |
-| 3 | Normal Status LED (U0R) | Output | ON when all sensors in safe range |
+| 3 | Normal Status LED (U0R) | Output | ON when body temperature is within 30–35°C |
 | 12 | MAX30100 I2C SCL | Output | I2C clock for pulse oximeter |
 | 13 | DHT22 Data | Bidirectional | Air temperature + humidity sensor |
 | 14 | DS18B20 OneWire | Bidirectional | Body temperature probe |
@@ -107,7 +107,7 @@ cd incubator
 
 ### 2. Configure ESP32 Firmware
 
-1. Open `firmware/InfantIncubator.ino` in the Arduino IDE.
+1. Open `firmware/InfantIncubator/InfantIncubator.ino` in the Arduino IDE.
 2. In `firmware/Globals.h`, replace the WiFi placeholder values:
 
 ```cpp
@@ -237,7 +237,7 @@ A versioned release will be archived on Zenodo for long-term preservation and DO
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-**Exception:** `firmware/app_httpd.cpp` is derived from Espressif Systems' ESP32 camera driver and is licensed under the Apache License 2.0.
+**Exception:** `firmware/InfantIncubator/app_httpd.cpp` is derived from Espressif Systems' ESP32 camera driver and is licensed under the Apache License 2.0.
 
 ## Screenshots
 
