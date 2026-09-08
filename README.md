@@ -229,9 +229,13 @@ The ESP32 IP address can be found by checking your router's DHCP client list or 
 
 ## Citation
 
-If you use SIIMS in your research, please cite this repository. A `CITATION.cff` file is included in the repository root for automated citation generation by GitHub and other tools.
+If you use SIIMS in your research, please cite the software using the DOI below. A `CITATION.cff` file is included in the repository root for automated citation generation by GitHub and other tools.
 
-A versioned release will be archived on Zenodo for long-term preservation and DOI assignment. The DOI will be added to the `CITATION.cff` after Zenodo processing.
+## DOI
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22665865.svg)](https://doi.org/10.5281/zenodo.22665865)
+
+DOI: https://doi.org/10.5281/zenodo.22665865
 
 ## License
 
